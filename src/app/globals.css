@@ -1,8 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FFFDF5; /* 파스텔 크림 옐로우 */
+  --foreground: #2C3E50; /* 편안한 남색 */
+  
+  --pastel-cream: #FFFDF5;
+  --pastel-yellow: #FEF9E7;
+  --pastel-blue: #EBF5FB;
+  --pastel-green: #E8F8F5;
+  
+  --tutor-primary: #3498DB;
+  --tutor-success: #2ECC71;
+  --tutor-accent: #E67E22;
 }
 
 @theme inline {
@@ -10,17 +19,21 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  
+  --color-pastel-cream: var(--pastel-cream);
+  --color-pastel-yellow: var(--pastel-yellow);
+  --color-pastel-blue: var(--pastel-blue);
+  --color-pastel-green: var(--pastel-green);
+  
+  --color-tutor-primary: var(--tutor-primary);
+  --color-tutor-success: var(--tutor-success);
+  --color-tutor-accent: var(--tutor-accent);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  margin: 0;
 }
