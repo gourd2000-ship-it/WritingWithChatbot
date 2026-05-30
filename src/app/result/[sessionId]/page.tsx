@@ -1,4 +1,5 @@
 import React from "react";
+export const dynamic = "force-dynamic";
 import { getSessionDetails, getStudentBadges } from "@/app/actions/session";
 import { db } from "@/lib/db";
 import ReflectionForm from "./_components/ReflectionForm";

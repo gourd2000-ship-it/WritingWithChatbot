@@ -1,4 +1,5 @@
 import React from "react";
+export const dynamic = "force-dynamic";
 import { db } from "@/lib/db";
 import TeacherDashboard, { TeacherSessionItem } from "./_components/TeacherDashboard";
 import Link from "next/link";

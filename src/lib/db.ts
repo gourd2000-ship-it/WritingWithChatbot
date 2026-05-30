@@ -1,9 +1,9 @@
 import { Pool } from "pg";
 
-const connectionString = process.env.DATABASE_URL;
+const connectionString = process.env.DATABASE_URL || "postgresql://dummy:dummy@localhost:5432/dummy";
 
-if (!connectionString) {
-  throw new Error("DATABASE_URL 환경 변수가 설정되지 않았습니다.");
+if (!process.env.DATABASE_URL) {
+  console.warn("⚠️ DATABASE_URL 환경 변수가 설정되지 않았습니다. (Next.js 빌드 과정일 수 있습니다)");
 }
 
 // Next.js 개발 모드에서 HMR(Hot Module Replacement)에 의한 연결 누수를 방지하기 위해 글로벌 객체에 캐싱
