@@ -148,9 +148,11 @@ export default function BadgeGallery({
                 >
                   {badge.label}
                 </h4>
-                <p className="text-[9px] font-bold text-gray-400 mt-0.5 leading-snug line-clamp-2">
-                  {badge.description}
-                </p>
+                {isEarned && (
+                  <p className="text-[9px] font-bold text-gray-400 mt-0.5 leading-snug line-clamp-2 animate-fade-in">
+                    {badge.description}
+                  </p>
+                )}
               </div>
             </div>
           );
