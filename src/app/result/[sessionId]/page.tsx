@@ -188,7 +188,7 @@ export default async function ResultPage({ params, searchParams }: PageProps) {
                 </p>
               </div>
 
-              {/* 내가 선택한 성장 태그 및 한 줄 반성 */}
+              {/* 내가 선택한 성장 태그 및 나의 학습 되돌아보기 */}
               <div className="bg-[#F8F9FA] border border-gray-100 p-6 rounded-2xl">
                 <h3 className="text-sm font-black text-gray-800 mb-4 flex items-center gap-1.5">
                   🌱 내가 선택한 오늘의 영어 성장 카드
@@ -250,7 +250,7 @@ export default async function ResultPage({ params, searchParams }: PageProps) {
 
                 {session.reflection_text && (
                   <div className="mt-5 pt-5 border-t border-gray-100">
-                    <h4 className="text-xs font-black text-gray-500 mb-2">내가 남긴 한 줄 반성 소감</h4>
+                    <h4 className="text-xs font-black text-gray-500 mb-2">내가 남긴 나의 학습 되돌아보기</h4>
                     <p className="text-sm font-bold text-gray-700 bg-white p-4 rounded-xl border border-gray-100 shadow-inner">
                       💡 "{session.reflection_text}"
                     </p>

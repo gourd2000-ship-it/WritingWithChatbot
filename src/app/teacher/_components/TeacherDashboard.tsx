@@ -309,7 +309,7 @@ export default function TeacherDashboard({
                 <th className="px-6 py-4">최종/최근 영어 문장</th>
                 <th className="px-6 py-4 text-center">수정 횟수</th>
                 <th className="px-6 py-4 text-center">과의존</th>
-                <th className="px-6 py-4">배운 점 (반성)</th>
+                <th className="px-6 py-4">배운 점 (되돌아보기)</th>
                 <th className="px-6 py-4 text-center">동작</th>
               </tr>
             </thead>
@@ -377,7 +377,7 @@ export default function TeacherDashboard({
                             ))}
                           </div>
                         ) : (
-                          <span className="text-gray-400 font-medium">미완료/반성 없음</span>
+                          <span className="text-gray-400 font-medium">미완료/되돌아보기 없음</span>
                         )}
                       </td>
                       <td className="px-6 py-4 text-center">
@@ -497,9 +497,9 @@ export default function TeacherDashboard({
                   </div>
                   <div className="bg-gray-50 border border-gray-100 p-4 rounded-2xl flex flex-col justify-between">
                     <div>
-                      <h5 className="text-[10px] font-black text-gray-400 mb-1.5">🧑‍🎓 학생의 자기반성 소감</h5>
+                      <h5 className="text-[10px] font-black text-gray-400 mb-1.5">🧑‍🎓 학생의 나의 학습 되돌아보기</h5>
                       <p className="text-xs text-gray-700 italic font-bold">
-                        {activeSession.reflection_text ? `"${activeSession.reflection_text}"` : "(작성한 한 줄 소감이 없습니다)"}
+                        {activeSession.reflection_text ? `"${activeSession.reflection_text}"` : "(작성한 학습 되돌아보기가 없습니다)"}
                       </p>
                     </div>
                     {activeSession.reflection_tags && (

@@ -186,7 +186,7 @@ export async function getSessionDetails(sessionId: number) {
 }
 
 /**
- * 세션을 완료 상태로 변경하고 최종 문장, 자기반성 태그/소감을 저장한 뒤
+ * 세션을 완료 상태로 변경하고 최종 문장, 성장 태그/학습 되돌아보기를 저장한 뒤
  * Gemini AI를 통해 동적으로 정성적 학습 성취 피드백을 생성하여 저장한 후 결과 페이지로 이동합니다.
  */
 export async function completeSession(
@@ -235,7 +235,7 @@ export async function completeSession(
 - 학생이 힌트를 통해 최종 완성한 문장: "${finalEnglishSentence}"
 - 스스로 문장을 고쳐 쓴 횟수: ${session.revision_count}회
 - 학생이 직접 꼽은 오늘 성장한 점 (태그): ${reflectionTags.join(", ")}
-- 학생의 주관식 소감: "${reflectionText || '없음'}"
+- 학생의 학습 되돌아보기: "${reflectionText || '없음'}"
 
 [피드백 작성 지침]
 1. 반드시 친절한 한글로 작성하세요. 초등학교 학생이 쉽게 이해할 수 있는 단어와 말투(예: "~했어요", "~했군요!")를 사용하세요.
@@ -290,7 +290,7 @@ export async function completeSession(
       }
     }
 
-    // 4) 성장 메아리 (active_reflector): 주관식 소감 30자 이상 작성
+    // 4) 성장 메아리 (active_reflector): 나의 학습 되돌아보기 30자 이상 작성
     if (reflectionText && reflectionText.trim().length >= 30) {
       earnedBadges.push("active_reflector");
     }

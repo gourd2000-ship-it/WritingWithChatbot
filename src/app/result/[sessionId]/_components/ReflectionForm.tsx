@@ -177,7 +177,7 @@ export default function ReflectionForm({
             className="w-5 h-5 rounded-lg border-gray-300 text-[#4A90E2] focus:ring-[#4A90E2] transition-colors cursor-pointer"
           />
           <label htmlFor="showText" className="text-sm font-black text-gray-600 cursor-pointer select-none">
-            🎨 직접 한 줄 소감을 남길래요 (선택)
+            🎨 직접 나의 학습 되돌아보기를 남길래요 (선택)
           </label>
         </div>
 
@@ -221,7 +221,7 @@ export default function ReflectionForm({
           </>
         ) : (
           <>
-            <span>🌱 반성 완료하고 리포트 확인하기</span>
+            <span>🌱 되돌아보기 완료하고 리포트 확인하기</span>
           </>
         )}
       </button>

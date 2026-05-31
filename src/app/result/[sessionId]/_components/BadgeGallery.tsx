@@ -43,7 +43,7 @@ const BADGE_DEFS: BadgeDef[] = [
   {
     code: "active_reflector",
     label: "성장 메아리 뱃지",
-    description: "자기반성 일지 소감을 30자 이상 진심으로 적었어요!",
+    description: "나의 학습 되돌아보기를 30자 이상 진심으로 적었어요!",
     icon: "💬",
     bgActive: "bg-[#F5EEF8]",
     borderActive: "border-[#AF7AC5]",
