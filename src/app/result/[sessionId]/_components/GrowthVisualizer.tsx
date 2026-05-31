@@ -115,9 +115,6 @@ export default function GrowthVisualizer({
               </p>
             </div>
           </div>
-          <span className="bg-[#EBF5FB] border border-[#AED6F1] text-[#2980B9] text-[10px] font-black px-3 py-1.5 rounded-xl uppercase tracking-wider">
-            🏅 배움의 마스터 뱃지 획득!
-          </span>
         </div>
       </div>
     </div>
