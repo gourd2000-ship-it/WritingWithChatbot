@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import ReflectionForm from "./_components/ReflectionForm";
 import GrowthVisualizer from "./_components/GrowthVisualizer";
 import BadgeGallery from "./_components/BadgeGallery";
+import FeedbackTrigger from "./_components/FeedbackTrigger";
 import Link from "next/link";
 
 interface PageProps {
@@ -261,10 +262,11 @@ export default async function ResultPage({ params, searchParams }: PageProps) {
               <BadgeGallery earnedBadges={earnedBadges} newBadges={newBadges} />
 
               {/* 하단 제어 버튼 */}
-              <div className="flex justify-center pt-4">
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-6 border-t border-gray-100">
+                <FeedbackTrigger sessionId={sId} studentId={session.student_id} />
                 <Link
                   href="/"
-                  className="bg-[#4A90E2] text-white text-sm font-black px-12 py-3.5 rounded-2xl shadow-md hover:bg-[#357ABD] transition-all hover:scale-[1.02] flex items-center justify-center"
+                  className="w-full sm:w-auto bg-[#4A90E2] text-white text-sm font-black px-12 py-3.5 rounded-2xl shadow-md hover:bg-[#357ABD] transition-all hover:scale-[1.02] flex items-center justify-center text-center cursor-pointer"
                 >
                   새 문장 작문하러 가기 🚀
                 </Link>

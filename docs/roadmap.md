@@ -142,6 +142,8 @@ gantt
     section 성장 뱃지 & 통합
     Phase 6: 성장 뱃지 획득 엔진 및 도감 UI 개발   :active, p6, after p5, 3d
     Phase 7: E2E 통합 검증 & Cloud Run 배포       : p7, after p6, 3d
+    section 사용후기 및 관리자
+    Phase 10: 사용후기 수집 및 제작자 대시보드 구축 : p10, after p7, 3d
 ```
 
 ### 1) Phase 0: 프로젝트 초기화 및 DB 스키마 구축 (완료)
@@ -210,6 +212,17 @@ gantt
   - 작문/결과/교사 대시보드 뷰 한글 변환 분기 처리 갱신.
 * **검증 방안**:
   - `scripts/test-high-school.ts`를 구현하여 고등 레벨 챌린지의 불일치 모달 트리거(Under-challenge / Academic level) 및 작문 생성 흐름 검증.
+
+### 10) Phase 10: 사용후기(Feedback) 수집 및 제작자 대시보드 구축
+* **상세 작업**:
+  - **DB 스키마 구성**: Neon DB에 `feedbacks` 테이블 생성.
+  - **백엔드 구현**: 피드백 생성 및 집계/목록 조회를 위한 Server Action(`actions/feedback.ts`) 개발.
+  - **학생용 설문 UI**: 최종 결과 페이지([ResultPage](file:///d:/anaconda/source_code/WritingWithChatbot/src/app/result/[sessionId]/page.tsx))에 후기 남기기 버튼 추가 및 별점(Hover & Click 인터랙티브 UI)과 서술형 입력을 지원하는 `FeedbackModal` 컴포넌트 개발. 제출 완료 시 진심 어린 감사의 글귀를 모달 내에 노출.
+  - **제작자용 비밀 대시보드**: `/feedback` 엔드포인트에 진입 시, 전체 만족도 평균 및 만족도 점수 분포 바 그래프, 개별 피드백 테이블 뷰를 출력하는 대시보드 UI 구현.
+* **검증 방안**:
+  - 결과 화면에서 후기 버튼 노출 및 모달의 인터랙티브 별점(Hover에 반응하는 별 개수 변경 및 Click 고정) 기능 검증.
+  - 제출 완료 후 Neon DB의 `feedbacks` 테이블에 정상 입력되는지 및 감사의 글귀가 팝업되는지 확인.
+  - 주소창에 `/feedback`을 수동 입력하여 어드민 대시보드로 성공적으로 진입하고, 평점 분포 및 데이터가 실시간 집계되어 렌더링되는지 브라우저 테스트 진행.
 
 ---
 
