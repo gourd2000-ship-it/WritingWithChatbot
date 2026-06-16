@@ -5,15 +5,13 @@ import { redirect } from "next/navigation";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { OpenAI } from "openai";
 
-const apiKey = process.env.GEMINI_API_KEY;
-if (!apiKey) {
-  console.warn("⚠️ GEMINI_API_KEY 환경 변수가 설정되지 않았습니다.");
+function getOpenAIClient(): OpenAI {
+  const apiKey = process.env.GEMINI_API_KEY;
+  return new OpenAI({
+    apiKey: apiKey || "dummy_key",
+    baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
+  });
 }
-
-const openai = new OpenAI({
-  apiKey: apiKey || "dummy_key",
-  baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
-});
 
 export interface StartSessionInput {
   grade: string;
@@ -87,7 +85,7 @@ JSON 포맷:
 }
 `;
 
-        const completion = await openai.chat.completions.create({
+        const completion = await getOpenAIClient().chat.completions.create({
           model: "gemini-2.5-flash",
           messages: [{ role: "user", content: prompt }],
           temperature: 0.2,
@@ -251,7 +249,7 @@ export async function completeSession(
 
 출력할 때 제목이나 다른 메타 텍스트(예: "피드백:") 없이 오직 피드백 내용만 줄글로 출력하세요.`;
 
-      const completion = await openai.chat.completions.create({
+      const completion = await getOpenAIClient().chat.completions.create({
         model: "gemini-2.5-flash",
         messages: [{ role: "user", content: prompt }],
         temperature: 0.5,

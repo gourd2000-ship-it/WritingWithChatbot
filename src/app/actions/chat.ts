@@ -5,16 +5,13 @@ import { buildChatContext, ChatMessage } from "@/lib/promptBuilder";
 import { filterTutorResponse } from "@/lib/safetyFilter";
 import { OpenAI } from "openai";
 
-const apiKey = process.env.GEMINI_API_KEY;
-if (!apiKey) {
-  console.warn("⚠️ GEMINI_API_KEY 환경 변수가 설정되지 않았습니다.");
+function getOpenAIClient(): OpenAI {
+  const apiKey = process.env.GEMINI_API_KEY;
+  return new OpenAI({
+    apiKey: apiKey || "dummy_key",
+    baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
+  });
 }
-
-// Google Gemini API의 OpenAI 호환 엔드포인트를 사용해 클라이언트 초기화
-const openai = new OpenAI({
-  apiKey: apiKey || "dummy_key",
-  baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
-});
 
 export interface ChatActionResponse {
   success: boolean;
@@ -148,7 +145,7 @@ export async function sendChatMessage(
     }
 
     // 6. Gemini API 호출 (OpenAI SDK 호환 엔드포인트 활용)
-    const completion = await openai.chat.completions.create({
+    const completion = await getOpenAIClient().chat.completions.create({
       model: "gemini-2.5-flash",
       messages: chatContext as any,
       temperature: 0.3,
