@@ -200,9 +200,10 @@ export async function completeSession(
   }
 
   try {
-    // 1. 세션 상세 정보 및 학생 레벨을 가져옴 (student_id, is_overdependent, is_challenging 추가)
+    // 1. 세션 상세 정보 및 학생 레벨을 가져옴 (student_id, is_overdependent, is_challenging, student_name 추가)
     const session = await db.getOne<{
       student_id: number;
+      student_name: string;
       korean_sentence: string;
       first_english_attempt: string | null;
       revision_count: number;
@@ -210,7 +211,7 @@ export async function completeSession(
       is_challenging: boolean;
       level: string;
     }>(
-      `SELECT ws.student_id, ws.korean_sentence, ws.first_english_attempt, ws.revision_count, ws.is_overdependent, ws.is_challenging, s.level
+      `SELECT ws.student_id, s.student_name, ws.korean_sentence, ws.first_english_attempt, ws.revision_count, ws.is_overdependent, ws.is_challenging, s.level
        FROM writing_sessions ws
        JOIN students s ON ws.student_id = s.id
        WHERE ws.id = $1`,
@@ -229,6 +230,7 @@ export async function completeSession(
 다음 정보를 바탕으로 학생에게 격려와 배움을 내재화할 수 있는 **정성적 학습 성취 피드백**을 작성해주세요.
 
 [학습 정보]
+- 학생 이름: ${session.student_name}
 - 학습 난이도 수준: ${session.level || '초등'}
 - 표현하려던 원래 우리말 뜻: "${session.korean_sentence}"
 - 학생의 첫 영어 작문 시도: "${session.first_english_attempt || ''}"
@@ -239,12 +241,13 @@ export async function completeSession(
 
 [피드백 작성 지침]
 1. 반드시 친절한 한글로 작성하세요. 초등학교 학생이 쉽게 이해할 수 있는 단어와 말투(예: "~했어요", "~했군요!")를 사용하세요.
-2. Hattie 피드백 3단 모델을 참고하여 구조화하되 자연스럽게 연결된 글로 작성하세요:
+2. 피드백 시작은 반드시 "${session.student_name}님, "으로 시작하여 친근하게 호칭해 주세요. (예: "${session.student_name}님, ...")
+3. Hattie 피드백 3단 모델을 참고하여 구조화하되 자연스럽게 연결된 글로 작성하세요:
    - 목표 문장의 한글 뜻을 잘 표현했음을 격려
    - 첫 시도 대비 최종 완성한 문장 간의 구체적인 발전 사항(어휘, 어순, 문법, 유능감 중 학생이 선택한 태그 내용 및 실제 문장 변화 대조)을 칭찬
    - 앞으로 더 나아가기 위한 작은 조언(Where to next)을 따뜻하게 전달
-3. 전체 분량은 3~4문장 이내로 명확하고 간결하게 작성하여 텍스트 피로도를 낮추세요.
-4. 칭찬할 때는 구체적으로 어떤 단어나 형태(예: 과거형 표현, 단어 순서 등)를 바꾼 점이 훌륭했는지를 짚어주세요.
+4. 전체 분량은 3~4문장 이내로 명확하고 간결하게 작성하여 텍스트 피로도를 낮추세요.
+5. 칭찬할 때는 구체적으로 어떤 단어나 형태(예: 과거형 표현, 단어 순서 등)를 바꾼 점이 훌륭했는지를 짚어주세요.
 
 출력할 때 제목이나 다른 메타 텍스트(예: "피드백:") 없이 오직 피드백 내용만 줄글로 출력하세요.`;
 

@@ -7,18 +7,11 @@ const FORBIDDEN_PATTERNS = [
 const ALTERNATIVE_MESSAGE = 
   "💡 정답을 바로 알려주지는 않을게요. 대신 네가 스스로 문장을 멋지게 완성할 수 있도록 힌트를 줄게요! 다시 시도해봐요.";
 
-/**
- * AI 응답 텍스트를 파싱하여 완성형 영어 정답이 노출되었는지 감시하고 필터링합니다.
- */
 export function filterTutorResponse(aiResponse: string): string {
-  let isFlagged = false;
-  let sanitizedResponse = aiResponse;
-
+  // 금지된 정답 유출 패턴 중 하나라도 매칭되면 일부 치환 대신 전체 응답을 대체 메시지로 변경
   for (const pattern of FORBIDDEN_PATTERNS) {
     if (pattern.test(aiResponse)) {
-      isFlagged = true;
-      // 매칭되는 특정 문장 영역을 대체 메시지로 치환
-      sanitizedResponse = sanitizedResponse.replace(pattern, ALTERNATIVE_MESSAGE);
+      return ALTERNATIVE_MESSAGE;
     }
   }
 
