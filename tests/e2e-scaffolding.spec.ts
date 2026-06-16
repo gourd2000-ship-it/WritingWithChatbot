@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 // 기본 타겟 URL 지정
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://writing-with-chatbot-515024197520.asia-northeast3.run.app";
 
 test.describe("영어 작문 AI 스캐폴딩 튜터 E2E 테스트", () => {
   
