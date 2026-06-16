@@ -10,6 +10,7 @@ function getOpenAIClient(): OpenAI {
   return new OpenAI({
     apiKey: apiKey || "dummy_key",
     baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
+    timeout: 20000, // 20초 타임아웃 지정
   });
 }
 
@@ -177,7 +178,9 @@ export async function sendChatMessage(
 
     // 튜터가 동적으로 결정한 다음 힌트 단계 (Fading 적용 결과)
     let finalHintLevel = targetHintLevel;
-    if (hintMatch) {
+    // Fading(도움 축소)은 오직 학생이 직접 글을 수정하여 전송(isHintRequest = false)했을 때만 작동합니다.
+    // 힌트 더 받기 요청(isHintRequest = true) 시에는 무조건 1단계씩 순차 상승을 보장하여 스킵을 예방합니다.
+    if (!isHintRequest && hintMatch) {
       finalHintLevel = parseInt(hintMatch[1]);
     }
 

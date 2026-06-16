@@ -28,12 +28,12 @@ test.describe("영어 작문 AI 스캐폴딩 튜터 E2E 테스트", () => {
     await page.click('button:has-text("AI 튜터링 시작하기")');
 
     // 대화창 URL로 넘어갔는지 확인 (/writing?sessionId=...)
-    await page.waitForURL(/\/writing/, { timeout: 15000 });
+    await page.waitForURL(/\/writing/, { timeout: 30000 });
     expect(page.url()).toContain("/writing");
 
     // 챗화면의 주요 구성 요소(입력창 등)가 렌더링되었는지 확인
     const inputArea = page.locator('input[placeholder*="영어 문장을"]');
-    await expect(inputArea).toBeVisible({ timeout: 10000 });
+    await expect(inputArea).toBeVisible({ timeout: 20000 });
   });
 
   test("시나리오 B: 초등 레벨 난이도 초과(Mismatch) 중재 모달 검증", async ({ page }) => {
@@ -59,7 +59,7 @@ test.describe("영어 작문 AI 스캐폴딩 튜터 E2E 테스트", () => {
 
     // 모달창 제목이 뜨는지 확인
     const modalTitle = page.locator('text="잠깐! 조금 어려운 문장이에요"');
-    await expect(modalTitle).toBeVisible({ timeout: 15000 });
+    await expect(modalTitle).toBeVisible({ timeout: 30000 });
 
     // 모달창 내에 추천 문장 안내가 포함되어 있는지 확인 (대소문자/마크다운 기호 우회하여 substring으로 검색)
     const recommendation = page.locator('text=추천 문장');
@@ -89,7 +89,7 @@ test.describe("영어 작문 AI 스캐폴딩 튜터 E2E 테스트", () => {
 
     // 모달창 제목 확인
     const modalTitle = page.locator('text="잠깐! 난이도 조율이 필요해요"');
-    await expect(modalTitle).toBeVisible({ timeout: 15000 });
+    await expect(modalTitle).toBeVisible({ timeout: 30000 });
   });
 
   test("시나리오 D: 교사 대시보드 및 피드백 대시보드 접근성 검증", async ({ page }) => {

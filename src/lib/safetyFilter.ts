@@ -1,7 +1,7 @@
 const FORBIDDEN_PATTERNS = [
-  /(?:정답은|완성 문장은|이렇게 쓰면 됩니다|영어로는 다음과 같습니다|번역하면|The correct sentence is|You can say|The answer is)\s*[:"']*\s*([A-Za-z\s.,!?'-]+)/gi,
-  // 따옴표나 콜론 뒤에 완성형 영어 문장(4단어 이상 연속)이 올 때 감지
-  /["'“‘]([A-Z][a-zA-Z\s,.'’!?]{15,})["'”’]/g
+  /(?:정답은|완성 문장은|이렇게 쓰면 됩니다|영어로는 다음과 같습니다|번역하면|The correct sentence is|You can say|The answer is)\s*[:"']*\s*([A-Za-z\s.,!?'-]+)/i,
+  // 따옴표나 콜론 뒤에 완성형 영어 문장(4단어 이상 연속)이 올 때 감지 (단어칩 나열 오감지 방지를 위해 쉼표와 따옴표 제외)
+  /["'“‘]([A-Z][a-zA-Z\s.!?]{15,})["'”’]/
 ];
 
 const ALTERNATIVE_MESSAGE = 
@@ -13,6 +13,17 @@ export function filterTutorResponse(aiResponse: string): string {
     if (pattern.test(aiResponse)) {
       return ALTERNATIVE_MESSAGE;
     }
+  }
+
+  // 4단계 단어 칩이나 5단계 문장틀 힌트는 한글 없이 영어만 주로 제공되므로 비율 필터링 예외 처리
+  const isLevel4Or5Hint = 
+    aiResponse.includes("단어 칩") || 
+    aiResponse.includes("필요한 단어") || 
+    aiResponse.includes("+") || 
+    aiResponse.includes("_");
+
+  if (isLevel4Or5Hint) {
+    return aiResponse;
   }
 
   // AI 응답 자체가 완성 영어 문장으로만 가득 차 있는 상황 방지 (한글이 거의 없고 영어 단어만 있는 경우)
