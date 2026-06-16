@@ -24,9 +24,8 @@ export function filterTutorResponse(aiResponse: string): string {
 
   // 한글이 거의 없고(1단어 이하) 영어 문장으로 추정되는 긴 구문(5단어 이상)만 있을 경우 차단
   if (koreanWordCount <= 1 && englishWordCount > 5) {
-    isFlagged = true;
-    sanitizedResponse = ALTERNATIVE_MESSAGE;
+    return ALTERNATIVE_MESSAGE;
   }
 
-  return isFlagged ? sanitizedResponse : aiResponse;
+  return aiResponse;
 }
