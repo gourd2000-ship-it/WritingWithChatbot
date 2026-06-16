@@ -88,8 +88,7 @@ JSON 포맷:
         const completion = await getOpenAIClient().chat.completions.create({
           model: "gemini-2.5-flash",
           messages: [{ role: "user", content: prompt }],
-          temperature: 0.2,
-          response_format: { type: "json_object" }
+          temperature: 0.2
         });
 
         const resText = completion.choices[0]?.message?.content || "";
