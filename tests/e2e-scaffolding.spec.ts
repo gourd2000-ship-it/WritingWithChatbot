@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 // 기본 타겟 URL 지정
-const BASE_URL = "https://writing-with-chatbot-e2drpqhmbq-du.a.run.app";
+const BASE_URL = "http://localhost:3000";
 
 test.describe("영어 작문 AI 스캐폴딩 튜터 E2E 테스트", () => {
   
@@ -11,7 +11,7 @@ test.describe("영어 작문 AI 스캐폴딩 튜터 E2E 테스트", () => {
     await expect(page).toHaveTitle(/Create Next App|영어 작문/);
 
     // 2. 인적사항 입력
-    await page.fill('input[placeholder="예: 4"]', "4");
+    await page.selectOption('select', { value: '초등 4' });
     await page.fill('input[placeholder="예: 2반"]', "1반");
     await page.fill('input[placeholder="예: 김민수"]', "자동테스트A");
 
@@ -41,7 +41,7 @@ test.describe("영어 작문 AI 스캐폴딩 튜터 E2E 테스트", () => {
     await page.goto(BASE_URL);
 
     // 2. 인적사항 입력
-    await page.fill('input[placeholder="예: 4"]', "4");
+    await page.selectOption('select', { value: '초등 4' });
     await page.fill('input[placeholder="예: 2반"]', "1반");
     await page.fill('input[placeholder="예: 김민수"]', "자동테스트B");
 
@@ -71,7 +71,7 @@ test.describe("영어 작문 AI 스캐폴딩 튜터 E2E 테스트", () => {
     await page.goto(BASE_URL);
 
     // 2. 인적사항 입력
-    await page.fill('input[placeholder="예: 4"]', "4");
+    await page.selectOption('select', { value: '고등 1' });
     await page.fill('input[placeholder="예: 2반"]', "1반");
     await page.fill('input[placeholder="예: 김민수"]', "자동테스트C");
 

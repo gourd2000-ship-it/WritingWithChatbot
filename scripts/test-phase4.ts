@@ -6,7 +6,7 @@ async function runPhase4Tests() {
   console.log("=== Phase 4 세션 종료 및 피드백 리터러시 검증 테스트 시작 ===\n");
 
   const testStudentPayload = {
-    grade: "5",
+    grade: "초등 5",
     className: "3반",
     studentName: "성춘향",
     level: "elementary_5_6"

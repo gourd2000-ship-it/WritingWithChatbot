@@ -4,7 +4,7 @@ async function runMigrationTests() {
   console.log("=== 개정된 DB 스키마 필드 검증 테스트 시작 ===\n");
 
   const testStudentPayload = {
-    grade: "5",
+    grade: "초등 5",
     className: "2반",
     studentName: "이순신",
     level: "elementary_5_6"

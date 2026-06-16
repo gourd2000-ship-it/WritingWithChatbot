@@ -6,7 +6,7 @@ async function runHighSchoolTests() {
   console.log("=== 고등학생(High School) 수준 추가 기능 통합 테스트 시작 ===\n");
 
   const testStudent = {
-    grade: "10", // 고등학교 1학년 상당
+    grade: "고등 1", // 고등학교 1학년 상당
     className: "3반",
     studentName: "고등테스터",
     level: "high_school"

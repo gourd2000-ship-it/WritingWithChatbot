@@ -17,6 +17,19 @@ export default function StudentEntryForm() {
   const [recommendedKorean, setRecommendedKorean] = useState("");
   const [recommendedEnglish, setRecommendedEnglish] = useState("");
 
+  const handleGradeChange = (val: string) => {
+    setGrade(val);
+    if (val === "초등 3" || val === "초등 4") {
+      setLevel("elementary_3_4");
+    } else if (val === "초등 5" || val === "초등 6") {
+      setLevel("elementary_5_6");
+    } else if (val.startsWith("중등")) {
+      setLevel("middle_school");
+    } else if (val.startsWith("고등")) {
+      setLevel("high_school");
+    }
+  };
+
   const handleSubmit = async (
     e: React.FormEvent,
     force = false,
@@ -73,17 +86,25 @@ export default function StudentEntryForm() {
       {/* 학년/반/이름 입력 영역 */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
-          <label className="block text-sm font-bold text-[#34495E] mb-2">몇 학년인가요? (숫자만)</label>
-          <input
-            type="number"
-            min="1"
-            max="9"
+          <label className="block text-sm font-bold text-[#34495E] mb-2">몇 학년인가요?</label>
+          <select
             value={grade}
-            onChange={(e) => setGrade(e.target.value)}
+            onChange={(e) => handleGradeChange(e.target.value)}
             className="w-full px-4 py-3 bg-[#FEF9E7] border-2 border-[#F4EFCF] rounded-2xl focus:border-[#3498DB] focus:outline-none text-[#2C3E50] font-semibold transition"
-            placeholder="예: 4"
             required
-          />
+          >
+            <option value="" disabled>선택해주세요</option>
+            <option value="초등 3">초등학교 3학년</option>
+            <option value="초등 4">초등학교 4학년</option>
+            <option value="초등 5">초등학교 5학년</option>
+            <option value="초등 6">초등학교 6학년</option>
+            <option value="중등 1">중학교 1학년</option>
+            <option value="중등 2">중학교 2학년</option>
+            <option value="중등 3">중학교 3학년</option>
+            <option value="고등 1">고등학교 1학년</option>
+            <option value="고등 2">고등학교 2학년</option>
+            <option value="고등 3">고등학교 3학년</option>
+          </select>
         </div>
         <div>
           <label className="block text-sm font-bold text-[#34495E] mb-2">몇 반인가요?</label>

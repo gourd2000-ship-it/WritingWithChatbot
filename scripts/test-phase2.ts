@@ -5,7 +5,7 @@ async function runTests() {
   console.log("=== Phase 2 학생 입장 & 세션 개시 검증 테스트 시작 ===\n");
 
   const testPayload = {
-    grade: "4",
+    grade: "초등 4",
     className: "3반",
     studentName: "홍길동",
     level: "elementary_3_4",

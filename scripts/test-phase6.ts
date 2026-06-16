@@ -6,7 +6,7 @@ async function runPhase6Tests() {
   console.log("=== Phase 6 성장 뱃지 시스템 검증 테스트 시작 ===\n");
 
   const testStudent = {
-    grade: "6",
+    grade: "초등 6",
     className: "4반",
     studentName: "홍길동",
     level: "elementary_5_6"

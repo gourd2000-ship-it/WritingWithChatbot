@@ -5,7 +5,7 @@ async function runPhase3Tests() {
   console.log("=== Phase 3 작문 대화 및 AI 튜터링 검증 테스트 시작 ===\n");
 
   const testStudent = {
-    grade: "6",
+    grade: "초등 6",
     className: "1반",
     studentName: "강감찬",
     level: "elementary_5_6"

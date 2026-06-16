@@ -6,7 +6,7 @@ async function runMismatchTests() {
   console.log("=== 하이브리드 난이도 불일치 및 도전가 뱃지 검증 테스트 시작 ===\n");
 
   const testStudent = {
-    grade: "5",
+    grade: "초등 5",
     className: "1반",
     studentName: "성진선",
     level: "elementary_5_6"
