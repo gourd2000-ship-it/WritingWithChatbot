@@ -92,7 +92,16 @@ JSON 포맷:
         });
 
         const resText = completion.choices[0]?.message?.content || "";
-        const resJson = JSON.parse(resText);
+        // 마크다운 JSON 코드블록이 포함될 경우 제거 후 파싱
+        const cleanJsonText = (text: string) => {
+          let trimmed = text.trim();
+          if (trimmed.startsWith("```")) {
+            trimmed = trimmed.replace(/^```(?:json)?\n?/, "");
+            trimmed = trimmed.replace(/```$/, "");
+          }
+          return trimmed.trim();
+        };
+        const resJson = JSON.parse(cleanJsonText(resText));
 
         if (resJson.suitable === false) {
           return {
